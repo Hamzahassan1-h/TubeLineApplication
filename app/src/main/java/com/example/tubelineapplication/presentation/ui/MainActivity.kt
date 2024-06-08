@@ -13,34 +13,38 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.tubelineapplication.presentation.TubeList.components.TubeListScreen
 import com.example.tubelineapplication.presentation.ui.theme.TubeLineApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-           TubeLineApplicationTheme {
-                // A surface container using the 'background' color from the theme
+            TubeLineApplicationTheme {
                 Surface(
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = Screen.TubeListScreen.route
+                        startDestination = "tube_list"
                     ) {
-                        composable(
-                            route = Screen.TubeListScreen.route
-                        ){
-                            TubeListScreen(navController = navController )
+                        composable(route = "tube_list") {
+                            TubeListScreen(navController = navController)
                         }
-
+                        composable(
+                            route = "tube_details/{tubeId}",
+                            arguments = listOf(navArgument("tubeId") { type = NavType.StringType })
+                        ) { backStackEntry ->
+                            val tubeId = backStackEntry.arguments?.getString("tubeId")
+                            // Implement your TubeDetailsScreen here
+                        }
                     }
                 }
             }

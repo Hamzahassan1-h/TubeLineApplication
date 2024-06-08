@@ -19,29 +19,25 @@ import com.example.tubelineapplication.domain.model.TubeLineList
 import com.example.tubelineapplication.presentation.ui.Screen
 
 @Composable
-fun TubeListScreen (
+fun TubeListScreen(
     viewModel: TubeListViewModel = hiltViewModel(),
     navController: NavController
-
-){
+) {
     val state = viewModel.state.value
-    Box(modifier = Modifier.fillMaxSize()){
-        LazyColumn (modifier = Modifier.fillMaxSize()){
-            items(state.tubeLines){ TubeLineList ->
+    Box(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            items(state.tubeLines) { tubeLineList ->
                 TubeListItem(
-                    TubeLineList = TubeLineList(),
+                    tubeLineList = tubeLineList,
                     onItemClick = {
-                        navController.navigate(Screen.TubeListScreen.route + "/${TubeLineList.id}")
-                        //  "/${capsule.capsuleId}"
+                        navController.navigate("tube_details/${tubeLineList.id}")
                     }
-
                 )
             }
         }
-        if (state.error.isNotBlank()){
+        if (state.error.isNotBlank()) {
             Text(
                 text = state.error,
-                //color = MaterialTheme.colorScheme,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -53,5 +49,4 @@ fun TubeListScreen (
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
     }
-
 }
