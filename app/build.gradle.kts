@@ -92,8 +92,12 @@ dependencies {
     implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     //testing
-        testImplementation ("junit:junit:4.13.2")
-        testImplementation ("org.mockito:mockito-core:3.11.2")
-        testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2")
+    testImplementation ("junit:junit:4.13.2")
+    testImplementation ("org.mockito:mockito-core:3.11.2")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2")
+    // Mocking library
+    testImplementation ("org.mockito:mockito-inline:3.11.2")
+    testImplementation ("androidx.arch.core:core-testing:2.1.0")
+
 
 }

@@ -24,7 +24,7 @@ class TubeListViewModel @Inject constructor(
         getTubes()
     }
 
-    private fun getTubes(){
+    fun getTubes(){
         getTubeLineUseCase().onEach { result ->
             when(result) {
                 is Resource.Success -> {

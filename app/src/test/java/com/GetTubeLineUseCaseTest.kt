@@ -17,7 +17,7 @@ import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import retrofit2.HttpException
-import java.io.IOException
+
 
 @ExperimentalCoroutinesApi
 class GetTubeLineUseCaseTest {
